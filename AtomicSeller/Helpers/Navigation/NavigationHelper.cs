@@ -33,6 +33,7 @@ namespace AtomicSeller.Helpers.Navigation
             Orders,
             //Shipments,
             Shipping,
+            Sales,
             Settings,
             CustomerAccount,
             Admin,
@@ -110,7 +111,8 @@ namespace AtomicSeller.Helpers.Navigation
             OrdersProcesMenuSection.AddChildren(
 //                MenuItem.NewItem(MenuItemsEnum.Home, "Accueil", Mdi.Home, "Home", "Index"),
                 MenuItem.NewItem(MenuItemsEnum.Orders, "Commandes", Mdi.Cart, "Order", "OrderIndex"),
-                MenuItem.NewItem(MenuItemsEnum.Receptions, "Receptions", Mdi.TruckDelivery, "Input", "InputIndex")
+                MenuItem.NewItem(MenuItemsEnum.Shipping, "Shipping", Mdi.TruckDelivery, "Labels", "ShippingDashBoard"),
+                MenuItem.NewItem(MenuItemsEnum.Sales, "Sales", Mdi.Sale, "Sales", "SalesDashBoard")
             );
 
             MenuItems.Add(OrdersProcesMenuSection);

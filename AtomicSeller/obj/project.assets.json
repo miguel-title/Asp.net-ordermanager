@@ -10599,19 +10599,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\---\\.nuget\\packages\\": {}
+    "C:\\Users\\title\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\AtomicSeller\\Tech\\Apps\\_OrderManager\\Dev\\AtomicSeller\\AtomicSeller.csproj",
+      "projectUniqueName": "E:\\2020\\client_project_from_0407\\france\\atomic\\project\\ordermanager\\ordermanaager\\AtomicSeller\\AtomicSeller.csproj",
       "projectName": "AtomicSeller",
-      "projectPath": "D:\\Projects\\AtomicSeller\\Tech\\Apps\\_OrderManager\\Dev\\AtomicSeller\\AtomicSeller.csproj",
-      "packagesPath": "C:\\Users\\---\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\AtomicSeller\\Tech\\Apps\\_OrderManager\\Dev\\AtomicSeller\\obj\\",
+      "projectPath": "E:\\2020\\client_project_from_0407\\france\\atomic\\project\\ordermanager\\ordermanaager\\AtomicSeller\\AtomicSeller.csproj",
+      "packagesPath": "C:\\Users\\title\\.nuget\\packages\\",
+      "outputPath": "E:\\2020\\client_project_from_0407\\france\\atomic\\project\\ordermanager\\ordermanaager\\AtomicSeller\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\---\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\title\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10724,7 +10724,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

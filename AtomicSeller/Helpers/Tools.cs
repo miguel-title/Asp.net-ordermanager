@@ -91,6 +91,139 @@ namespace AtomicSeller
 
         }
 
+        public decimal ConvertStringToDecimal(string Value, string Culture = null)
+        {
+
+            //CultureInfo _CultureInfo = new CultureInfo("en-US");
+            //if (Culture!=null) _CultureInfo = new CultureInfo(Culture);
+
+            if (string.IsNullOrEmpty(Value)) return 0;
+            Value = Regex.Replace(Value, "[^\\d,^\\.,^\\,]*", "");
+            Value = Value.Replace(",", ".");
+            try
+            {
+                return Convert.ToDecimal(Value, CultureInfo.InvariantCulture);
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        public int ConvertStringToInt(string Value)
+        {
+            if (string.IsNullOrEmpty(Value)) return 0;
+            Value = Regex.Replace(Value, "[^\\d,^\\.,^\\,]*", "");
+            Value = Value.Replace(",", ".");
+            if (string.IsNullOrEmpty(Value)) return 0;
+
+            int Ret = 0;
+            try
+            {
+                Ret = (int)Convert.ToDouble(Value, CultureInfo.InvariantCulture);
+                //Ret = Convert.ToInt32(Value, CultureInfo.InvariantCulture);
+            }
+            catch (Exception ex)
+            {
+                Tools.ErrorHandler("ConvertStringToInt error Value=" + Value.ToString(), ex);
+            }
+            return Ret;
+        }
+
+        public string ConvertDateToString(DateTime InputDate, string DateFormat = null, string _Culture = null)
+        {
+            if (DateFormat != null)
+                return InputDate.ToString(DateFormat);
+
+            switch (_Culture)
+            {
+                case "en-US":
+                    return InputDate.ToString("MM/dd/yyyy");
+                //break;
+                case "fr-FR":
+                    return InputDate.ToString("dd/MM/yyyy");
+                //break;
+                case "":
+                case null:
+                    if (string.IsNullOrEmpty(DateFormat))
+                        return InputDate.ToString("yyyyMMdd");
+                    else
+                        return InputDate.ToString(DateFormat);
+                //break;
+                default:
+                    return InputDate.ToString("MM/dd/yyyy");
+                    //break;
+            }
+        }
+
+        public DateTime ConvertStringToDate(string InputString, string _Culture = null)
+        {
+            if (string.IsNullOrEmpty(InputString)) return new DateTime(1900, 1, 1);
+
+            List<string> formats = new List<string>();
+
+            if (string.IsNullOrEmpty(_Culture)) _Culture = "";
+            switch (_Culture)
+            {
+                case "fr-FR":
+                    //"21\/02\/2019"
+                    formats.Add("dd/MM/yyyy");
+                    formats.Add("dd/M/yyyy");
+                    formats.Add("d/M/yyyy");
+                    formats.Add("d/MM/yyyy");
+                    formats.Add("dd/MM/yy");
+                    formats.Add("dd/M/yy");
+                    formats.Add("d/M/yy");
+                    formats.Add("d/MM/yy");
+                    formats.Add("ddd dd MMM yyyy h:mm tt zzz");
+                    formats.Add("dd-MM-yyyy");
+                    formats.Add("dd/MM/yyyy HH:mm:ss"); // 25/04/2019 00:00:00 // 11/06/2019 00:00:00
+                    //"MM/dd/yyyy HH:mm:ss",
+                    formats.Add("dd/MM/yyyy HH:mm");
+                    //"MM/dd/yyyy HH:mm"
+                    formats.Add("yyyy-MM-dd HH:mm:ss");
+                    formats.Add("yyyy-MM-dd'T'HH:mm:ss.fff'Z'"); //"2020-07-15T07:07:55.000Z"
+                    formats.Add("yyyy-MM-dd'T'HH:mm:ss"); //"2020-07-15T07:07:55.000Z"
+                    break;
+                default:
+                    //"21\/02\/2019"
+                    formats.Add("dd/MM/yyyy");
+                    formats.Add("dd/M/yyyy");
+                    formats.Add("d/M/yyyy");
+                    formats.Add("d/MM/yyyy");
+                    formats.Add("dd/MM/yy");
+                    formats.Add("dd/M/yy");
+                    formats.Add("d/M/yy");
+                    formats.Add("d/MM/yy");
+                    formats.Add("ddd dd MMM yyyy h:mm tt zzz");
+                    formats.Add("dd-MM-yyyy");
+                    formats.Add("dd/MM/yyyy HH:mm:ss");
+                    //"MM/dd/yyyy HH:mm:ss",
+                    formats.Add("dd/MM/yyyy HH:mm");
+                    //"MM/dd/yyyy HH:mm"
+                    formats.Add("yyyy-MM-dd HH:mm:ss");
+                    formats.Add("yyyy-MM-dd'T'HH:mm:ss.fff'Z'"); //"2020-07-15T07:07:55.000Z" 2020-05-29T07:37:48.000Z"
+                    formats.Add("yyyy-MM-dd'T'HH:mm:ss");
+                    formats.Add("yyyy-MM-ddTHH:mm:ss.fffZ"); //"2020-07-15T07:07:55.000Z" 2020-05-29T07:37:48.000Z"
+                    break;
+            }
+
+
+            DateTime ResultDate;
+
+            //            if (!DateTime.TryParse(InputString, out ResultDate))
+            if (DateTime.TryParseExact(InputString, formats.ToArray(),
+                System.Globalization.CultureInfo.InvariantCulture,
+                System.Globalization.DateTimeStyles.None, out ResultDate))
+                return ResultDate;
+
+            if (DateTime.TryParse(InputString, out ResultDate))
+                return ResultDate;
+
+            //if (DateTime.TryParse(InputString, out ResultDate)) return ResultDate;
+
+            return new DateTime(1900, 1, 1);
+        }
 
 
 
